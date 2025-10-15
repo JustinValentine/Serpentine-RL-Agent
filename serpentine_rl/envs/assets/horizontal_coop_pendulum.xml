@@ -1,0 +1,57 @@
+<mujoco model="dual_rail_ring_balance">
+    <compiler inertiafromgeom="true" angle="degree"/>
+    <option gravity="0 0 -9.81" integrator="RK4" timestep="0.02"/>
+    <size nconmax="120" njmax="200" nstack="5000"/>
+
+    <default>
+        <joint armature="0" damping="1.5" limited="true"/>
+        <geom contype="0" friction="1.0 0.05 0.05" rgba="0.5 0.6 0.7 1"/>
+        <motor ctrllimited="true" ctrlrange="-3 3"/>
+    </default>
+
+    <worldbody>
+        <geom name="floor" type="plane" pos="0 0 -1" size="2 2 0.1" rgba="0.2 0.2 0.2 1"/>
+
+        <body name="left_rail" pos="-0.55 0 0.6">
+            <geom name="left_rail_geom" type="capsule" fromto="0 0 -0.7 0 0 0.7" size="0.02" rgba="0.3 0.3 0.7 1"/>
+            <body name="left_cart" pos="0 0 0">
+                <joint name="left_slider" type="slide" axis="0 0 1" range="-0.35 0.35"/>
+                <geom name="left_cart_geom" type="box" size="0.05 0.08 0.05" rgba="0.2 0.5 0.8 1"/>
+                <site name="left_attach" pos="0 0 0" size="0.015"/>
+            </body>
+        </body>
+
+        <body name="right_rail" pos="0.55 0 0.6">
+            <geom name="right_rail_geom" type="capsule" fromto="0 0 -0.7 0 0 0.7" size="0.02" rgba="0.3 0.3 0.7 1"/>
+            <body name="right_cart" pos="0 0 0">
+                <joint name="right_slider" type="slide" axis="0 0 1" range="-0.35 0.35"/>
+                <geom name="right_cart_geom" type="box" size="0.05 0.08 0.05" rgba="0.8 0.5 0.2 1"/>
+                <site name="right_attach" pos="0 0 0" size="0.015"/>
+            </body>
+        </body>
+
+        <body name="crossbar" pos="0 0 0.6">
+            <joint name="bar_free" type="free"/>
+            <geom name="crossbar_geom" type="capsule" fromto="-0.55 0 0 0.55 0 0" size="0.03 0.55" rgba="0.65 0.65 0.65 1" density="900"/>
+            <site name="bar_left" pos="-0.55 0 0" size="0.015"/>
+            <site name="bar_right" pos="0.55 0 0" size="0.015"/>
+
+            <body name="ring_carriage" pos="0 0 0">
+                <joint name="ring_slide" type="slide" axis="1 0 0" range="-0.35 0.35" damping="0.35"/>
+                <geom name="ring_outer" type="cylinder" size="0.1 0.012" rgba="0.85 0.25 0.25 1" euler="0 90 0" contype="1" conaffinity="1" density="850"/>
+                <geom name="ring_inner" type="cylinder" size="0.06 0.013" rgba="0.2 0.2 0.2 1" euler="0 90 0" contype="0" conaffinity="0" density="50"/>
+                <site name="ring_site" pos="0 0 0" size="0.02"/>
+            </body>
+        </body>
+    </worldbody>
+
+    <equality>
+        <connect site1="left_attach" site2="bar_left"/>
+        <connect site1="right_attach" site2="bar_right"/>
+    </equality>
+
+    <actuator>
+        <motor name="left_actuator" joint="left_slider" gear="220"/>
+        <motor name="right_actuator" joint="right_slider" gear="220"/>
+    </actuator>
+</mujoco>

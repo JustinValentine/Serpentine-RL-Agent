@@ -1,0 +1,26 @@
+.DS_Store
+._*
+
+# Python cache / artifacts
+__pycache__/
+*.py[cod]
+*.so
+*.dylib
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Packaging outputs
+build/
+dist/
+*.egg-info/
+
+# Training artifacts and logs
+runs/
+
+# Editor settings
+.idea/
+.vscode/
+
