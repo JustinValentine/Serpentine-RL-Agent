@@ -15,7 +15,7 @@
         <body name="left_rail" pos="-0.55 0 0.6">
             <geom name="left_rail_geom" type="capsule" fromto="0 0 -0.7 0 0 0.7" size="0.02" rgba="0.3 0.3 0.7 1"/>
             <body name="left_cart" pos="0 0 0">
-                <joint name="left_slider" type="slide" axis="0 0 1" range="-0.35 0.35"/>
+                <joint name="left_slider" type="slide" axis="0 0 1" range="-0.5 0.5"/>
                 <geom name="left_cart_geom" type="box" size="0.05 0.08 0.05" rgba="0.2 0.5 0.8 1"/>
                 <site name="left_attach" pos="0 0 0" size="0.015"/>
             </body>
@@ -24,7 +24,8 @@
         <body name="right_rail" pos="0.55 0 0.6">
             <geom name="right_rail_geom" type="capsule" fromto="0 0 -0.7 0 0 0.7" size="0.02" rgba="0.3 0.3 0.7 1"/>
             <body name="right_cart" pos="0 0 0">
-                <joint name="right_slider" type="slide" axis="0 0 1" range="-0.35 0.35"/>
+                <joint name="right_slider" type="slide" axis="0 0 1" range="-0.5 0.5"/>
+                <joint name="right_slide_x" type="slide" axis="1 0 0" range="-0.1 0.1" damping="0.2"/>
                 <geom name="right_cart_geom" type="box" size="0.05 0.08 0.05" rgba="0.8 0.5 0.2 1"/>
                 <site name="right_attach" pos="0 0 0" size="0.015"/>
             </body>
@@ -37,7 +38,7 @@
             <site name="bar_right" pos="0.55 0 0" size="0.015"/>
 
             <body name="ring_carriage" pos="0 0 0">
-                <joint name="ring_slide" type="slide" axis="1 0 0" range="-0.35 0.35" damping="0.35"/>
+                <joint name="ring_slide" type="slide" axis="1 0 0" range="-0.35 0.35" damping="0.1"/>
                 <geom name="ring_outer" type="cylinder" size="0.1 0.012" rgba="0.85 0.25 0.25 1" euler="0 90 0" contype="1" conaffinity="1" density="850"/>
                 <geom name="ring_inner" type="cylinder" size="0.06 0.013" rgba="0.2 0.2 0.2 1" euler="0 90 0" contype="0" conaffinity="0" density="50"/>
                 <site name="ring_site" pos="0 0 0" size="0.02"/>
