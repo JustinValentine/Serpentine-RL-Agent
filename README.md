@@ -52,6 +52,18 @@ The scripted partner actuator now samples higher random velocity magnitudes and 
 
 Episodes end early if the ring approaches the limits, the bar tips beyond `max_tilt`, or the crossbar moves outside `[0.08, 1.4]` m.
 
+### Plot training curves
+
+Use the helper script to convert TensorBoard logs into PNGs for episode length and return:
+
+```bash
+PYTHONPATH=. python scripts/plot_training_metrics.py \
+    --log-dir runs/horizontal_pendulum/PPO_26 \
+    --output-dir renders/training_plots
+```
+
+The script selects the newest `events.out.tfevents.*` file in the log directory (or accepts a direct path) and writes `ep_len_mean.png` and `ep_rew_mean.png` under the chosen output folder.
+
 ### Evaluate a trained policy
 
 ```bash
