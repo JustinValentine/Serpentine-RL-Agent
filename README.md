@@ -36,7 +36,7 @@ The script logs TensorBoard summaries and checkpoints to `runs/<timestamp>/`. Us
 
 ## Sample Rollout
 
-![Policy balancing the ring](renders/episode_01.gif)
+![Policy balancing the ring](renders/eval_gifs/episode_01.gif)
 
 ### Reward shaping
 
